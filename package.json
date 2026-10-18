@@ -1,0 +1,14 @@
+{
+  "name": "claudegame004",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ブラウザで遊べるカジュアルゲーム（将来 Capacitor でアプリ化予定）",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
