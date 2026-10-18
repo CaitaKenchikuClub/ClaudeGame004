@@ -18,7 +18,18 @@
 
 将来ゲームが大きくなりバンドラ（Vite 等）が必要になった場合は、その時点で導入を検討します（`base: './'` 設定が必要）。
 
-## 初期整備で行ったこと
+## 2026-10-18 追記：ゲーム本体の取り込み
+
+初期調査時点ではリポジトリにゲームが無かったが、ゲーム「ぼくのウミウシ」は claude.ai のアーティファクトとして作成済みだった。これを無改変で `index.html` として取り込み、プレースホルダー画面（`src/main.js`・`src/style.css`）は削除した。
+
+取り込み時の確認結果：
+
+- 1 ファイル約 4.4MB。画像（スプライト・背景・マップ）は data URI で埋め込み
+- セーブは localStorage（`bokuno-umiushi-save`）。claude.ai のクラウド保存は `window.claude` がある時のみ動作し、Pages では自動で無効
+- 外部依存は Google Fonts のみ（ブロックしても動作することを確認）
+- Pages のサブパス（`/ClaudeGame004/`）・スマホ画面で、開始・チュートリアル・えさやり・セーブ・つづきからを確認
+
+## 初期整備で行ったこと（取り込み前）
 
 - エントリーポイント `index.html` と動作確認用プレースホルダー画面（`src/main.js`）
   - devicePixelRatio 対応の全画面 Canvas、リサイズ追従
@@ -34,17 +45,20 @@
 
 - [x] リソースを相対パスで参照（テストで検査）
 - [x] `.nojekyll` を配置
-- [x] favicon の 404 を抑止
+- [ ] favicon の用意（現在はブラウザが `/favicon.ico` を探して 404 になるが動作に影響なし）
 - [ ] Pages の有効化（所有者作業：Settings → Pages → main / root）
 - [ ] Pages は HTTPS 配信のため、将来の外部リソースも HTTPS 必須
 - [ ] Pages は全リポジトリファイルを公開する点に注意（秘密情報を置かない）。`docs/` や `tests/` も公開されるが実害はない
 
 ## 今後の推奨タスク（優先度順）
 
-1. **ゲーム仕様の決定**：「ウミウシ」をテーマにしたゲーム内容・操作・勝敗条件を決める
-2. **ゲーム本体の実装**：`src/main.js` のプレースホルダーを置き換え、シーン（タイトル/プレイ/リザルト）単位でモジュール分割
-3. **サウンド**：Web Audio はユーザー操作後に開始する必要がある（最初のタップで `AudioContext.resume()`）
-4. **PWA 化（オフライン対応の第一段階）**：`manifest.webmanifest`・アイコン・Service Worker を追加（詳細は [OFFLINE_AND_ADS.md](OFFLINE_AND_ADS.md)）
-5. **CI**：GitHub Actions で `npm test` を実行（必要になった段階で）
-6. **Capacitor 化**：[CAPACITOR.md](CAPACITOR.md) の手順に沿って実施（指示があった段階で）
-7. **広告導入**：アプリ化後、[OFFLINE_AND_ADS.md](OFFLINE_AND_ADS.md) の方針に沿って実施（指示があった段階で）
+1. **ゲームの機能追加・改善**（今後の指示に応じて）
+2. **テスト用 UI の扱い**：画面下の「テスト用の時間の速さ ×1/×10/×60」ボタン、コード内の「テスト用に追加」データを、公開前に整理する
+3. **フォントの同梱**：Google Fonts（Zen Maru Gothic / Klee One）をリポジトリに同梱し、オフラインでも同じ見た目にする（ライセンスは SIL OFL で同梱可）
+4. **ファイル分割の検討**：4.4MB の 1 ファイルは編集・差分確認がしにくい。画像を `assets/`、CSS/JS を `src/` へ分ける（動作を変えずに段階的に）
+5. **セーブ処理の整理**：ゲームの `save()`/`load()` を `src/storage.js` 経由にし、Capacitor Preferences へ差し替え可能にする
+6. **サウンド**：Web Audio はユーザー操作後に開始する必要がある（最初のタップで `AudioContext.resume()`）
+7. **PWA 化（オフライン対応の第一段階）**：`manifest.webmanifest`・アイコン・Service Worker を追加（詳細は [OFFLINE_AND_ADS.md](OFFLINE_AND_ADS.md)）
+8. **CI**：GitHub Actions で `npm test` を実行（必要になった段階で）
+9. **Capacitor 化**：[CAPACITOR.md](CAPACITOR.md) の手順に沿って実施（指示があった段階で）
+10. **広告導入**：アプリ化後、[OFFLINE_AND_ADS.md](OFFLINE_AND_ADS.md) の方針に沿って実施（指示があった段階で）
