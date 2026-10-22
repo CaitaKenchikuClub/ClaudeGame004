@@ -25,9 +25,11 @@ button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 .app{max-width:540px;margin:0 auto;background:var(--frame);border:2px solid #2d5f86;border-radius:26px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:12px}
 .hud{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 4px 12px;position:relative}
 .hud::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='6'%3E%3Cpath d='M0 3q6-4 12 0t12 0' fill='none' stroke='%237fb0d0' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x}
-.hud h1{margin:0;margin-right:auto;font-size:1.55rem;font-weight:900;letter-spacing:.06em;color:var(--ink)}
+.hud h1{margin:0;margin-right:auto;font-size:clamp(1.05rem,5.4vw,1.55rem);font-weight:900;letter-spacing:.04em;color:var(--ink);white-space:nowrap;min-width:0}
 .hud h1 small{font-size:.7em}
-.pt{display:flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;font-weight:700;font-size:1.15rem}
+.pt{display:flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums;font-weight:700;font-size:clamp(.95rem,4.4vw,1.15rem);white-space:nowrap;flex:none}
+@media (max-width:400px){.hud{gap:8px}.pt svg{width:22px;height:19px}}
+@media (max-width:350px){.hud{gap:6px}.hud h1{font-size:1rem;letter-spacing:.02em}.pt{font-size:.9rem;gap:3px}.pt svg{width:18px;height:16px}}
 .pt svg{width:26px;height:22px}
 .pt span{font-size:.8rem;color:var(--ink2)}
 .tabs{display:flex;justify-content:center;gap:4px}
