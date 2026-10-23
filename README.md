@@ -41,7 +41,7 @@ npm test
 ## ファイル構成
 
 ```
-index.html          ゲーム本体「ぼくのウミウシ」（約 6.3MB。CSS・JS・画像をすべて内包）
+index.html          ゲーム本体「ぼくのウミウシ」（約 7.0MB。CSS・JS・画像をすべて内包）
 bgm.mp3             BGM（約 3.1MB。アーティファクトの公開ファイルをそのまま取り込み）
 .nojekyll           Pages で Jekyll 処理を無効化（_ で始まるファイル等を正しく配信するため）
 src/
@@ -58,7 +58,7 @@ docs/               設計メモ・今後の課題
 - リソースは必ず相対パス（`./src/...`）で参照する。`/src/...` のようなルート絶対パスは Pages のサブパス配信で壊れる
 - セーブはゲーム内の `save()` / `load()`（localStorage キー `bokuno-umiushi-save`、`migrate()` でバージョン移行）。セーブ形式を変える時は必ず `migrate()` に移行処理を足し、既存プレイヤーのデータを壊さない
 - claude.ai 上でのみ動くクラウド保存（`window.claude`）は、それ以外の環境では自動で無効になる
-- BGM のオン/オフはメニューから切り替え、localStorage キー `umi-bgm` に保存される（画面の折りたたみ状態は `umi-sfold`）
+- BGM のオン/オフはメニューから切り替え、localStorage キー `umi-bgm` に保存される（効果音は `umi-se`、画面の折りたたみ状態は `umi-sfold`）
 - 広告は `src/ads.js` 経由で呼ぶ。SDK・広告 ID はまだ導入しない
 - 外部 CDN への依存を増やさない（オフライン化の妨げになる）。素材やライブラリはリポジトリ内に置く
 - 入力は Pointer Events で扱い、マウス・タッチ両対応にする
