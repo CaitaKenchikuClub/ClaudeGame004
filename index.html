@@ -231,7 +231,8 @@ button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 .flog{text-align:center;font-size:.8rem;color:var(--accent);font-weight:700;margin:-4px 0 0}
 .kid .pred{margin-top:2px;padding:3px 10px;border-radius:10px;background:#eaf4fa;color:var(--ink);font-size:.64rem;max-width:120px;text-align:center;line-height:1.35}.kid .pred b{font-weight:900;display:block}.kid .pred small{display:block;font-size:.85em;color:var(--ink2);font-weight:700}.kid .pred.unk b{color:var(--ink2)}
 .kid .hg{color:#c4532c}
-.tut{position:fixed;inset:0;z-index:20;background:rgba(20,50,80,.45);display:flex;align-items:flex-end;justify-content:center;padding:0 16px calc(var(--navh) + 30px + env(safe-area-inset-bottom,0px))}
+.tut{position:fixed;inset:0;z-index:20;background:rgba(20,50,80,.45);display:flex;align-items:center;justify-content:center;padding:0 16px calc(var(--navh) + env(safe-area-inset-bottom,0px))}
+.mi{width:1.25em;height:1.25em;vertical-align:-.25em;margin-right:.3em;color:#2d5f86}
 .tut .card2{background:var(--paper);border:2px solid #2d5f86;border-radius:22px;max-width:420px;width:100%;padding:18px 18px 14px;box-shadow:0 8px 28px rgba(20,60,100,.25);animation:up .22s ease-out}
 .tut h3{margin:0 0 6px;font-size:1.1rem;font-weight:900;color:var(--ink)}
 .tut p{margin:0;font-family:var(--f-note);font-size:.9rem;line-height:1.7;color:var(--ink)}
@@ -1450,7 +1451,7 @@ function tick(){
   if(S.tg!=null){if($('sheet').hidden&&$('tut').hidden&&$('modal').hidden){if(revealQ.length)showReveal(revealQ.shift());else if(!S.tanks.some(t=>t.res.some(b=>b.kind==='maturing'&&b.readyAt<1e14)))showG()}}
   else if($('sheet').hidden&&$('tut').hidden&&$('modal').hidden){if(lbDue()){const L=S.login||(S.login={id:LB_ID,n:0,last:null}),r=LOGIN[L.n];L.id=LB_ID;L.n++;L.last=today();if(typeof r==='string'){S.own.deco=S.own.deco||[];if(!S.own.deco.includes(r))S.own.deco.push(r)}else S.pt+=r;save();A.loginOpen(true)}
     else if(revealQ.length)showReveal(revealQ.shift());else if(S.pending.length)showKeep();
-    else if(!S.compDone&&allFound()&&$('modal').hidden){S.compDone=1;save();showModal('🎉 図鑑コンプリート',`<div class="doc" style="text-align:center"><p style="font-size:1.15rem;font-weight:900">おめでとう！</p><p style="font-weight:700">ウミウシ図鑑を完成しました！</p><p>これからも海の生き物を優しく観察してね！</p></div><button class="big" data-act="compNext" style="margin-top:12px">つぎへ</button>`)}}
+    else if(!S.compDone&&allFound()&&$('modal').hidden){S.compDone=1;save();showModal(MI.party+'図鑑コンプリート',`<div class="doc" style="text-align:center"><p style="font-size:1.15rem;font-weight:900">おめでとう！</p><p style="font-weight:700">ウミウシ図鑑を完成しました！</p><p>これからも海の生き物を優しく観察してね！</p></div><button class="big" data-act="compNext" style="margin-top:12px">つぎへ</button>`)}}
   if($('title').hidden)renderHud();
 }
 
@@ -1566,6 +1567,7 @@ function showTut(){const st=TUT[tutI];$('tutT').textContent=st.t;$('tutB').textC
   $('tutD').innerHTML=TUT.map((_,i)=>`<i class="${i===tutI?'on':''}"></i>`).join('');$('tutN').textContent=tutI===TUT.length-1?'はじめる':'つぎへ';
   $('nav').classList.add('tut-on');$('nav').querySelectorAll('button').forEach(b=>b.classList.toggle('hl',b.dataset.act===st.hl));$('tut').hidden=false}
 function endTut(){tutI=-1;$('tut').hidden=true;$('nav').classList.remove('tut-on');$('nav').querySelectorAll('button').forEach(b=>b.classList.remove('hl'));if(S){S.tut=1;save()}}
+const MI={wave:'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9c2.5 0 2.5-2.5 5-2.5S9.5 9 12 9s2.5-2.5 5-2.5S19.5 9 22 9"/><path d="M2 16c2.5 0 2.5-2.5 5-2.5S9.5 16 12 16s2.5-2.5 5-2.5S19.5 16 22 16"/></svg>',coral:'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8M12 13c-3 0-5-2-5-6M12 13c3 0 5-2 5-5M7 7V4M7 7c-2 0-3-1-3-3M17 8V5M17 8c2 0 3-1 3-3M12 17c-2 0-3-1-3-3"/><path d="M8 21h8"/></svg>',shell:'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-5 0-8-3-8-7 0-4 4-8 8-8s8 4 8 8c0 4-3 7-8 7z"/><path d="M12 20V6M12 20l-5-11M12 20l5-11M12 20L5 14M12 20l7-6"/></svg>',mask:'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9c0-1.5 1-2 2.5-2h13C20 7 21 7.5 21 9v3c0 2-1.5 3-3 3h-2.5L12 13l-3.5 2H6c-1.5 0-3-1-3-3z"/><path d="M19 7V4"/></svg>',party:'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-11 7 7z"/><path d="M14 4v2M19 9h2M17 5l-1.5 1.5M12 9c1-1 1-3 0-4M15 12c1-1 3-1 4 0"/></svg>',spark:'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"/></svg>',warn:'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2.5 20h19z"/><path d="M12 10v4.5"/><circle cx="12" cy="17.3" r=".6" fill="currentColor"/></svg>',beach:'<svg class="mi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a8 8 0 0 1 16 0z"/><path d="M12 11v8M12 3v0M8 11c0-3 2-6 4-8M16 11c0-3-2-6-4-8"/><path d="M3 20c3-1.5 6-1.5 9 0s6 1.5 9 0"/></svg>'};
 /* はじめてのチュートリアル（S.tg＝いまの段階）：誕生日→ショップでこども→えさ（青い海綿）→アオウミウシ */
 const GT=[{t:'おたんじょうび',b:'誕生日に水槽を買ってもらった！\nお小遣いで何か買いに行こう！'},
  {t:'ショップへ',b:'下の「ショップ」をタップして、こどもウミウシを買おう。',hl:'shopOpen'},
@@ -1575,7 +1577,7 @@ const GT=[{t:'おたんじょうび',b:'誕生日に水槽を買ってもらっ�
  {t:'さあ、はじめよう！',b:'たくさんのウミウシを見つけよう！'},
  {t:'のんびり待とう',b:'ウミウシは成長するのに時間がかかります。\n海へ行ったり、水槽の模様替えをしてのんびり待ってね！'}];
 /* チュートリアルのあと、はじめて開いたときのひとこと（S.tips） */
-const TIPS={env:['🪸 環境','ウミウシが好きな場所を水槽に設置できるよ！\n場所によってどんなウミウシが育つかな？'],deco:['🐚 かざり','水槽を飾ろう！\n海に行くと何か見つかるかも？'],gear:['🤿 そうび','海遊びをするための道具を揃えよう！'],sea:['🌊 海へ','海で色々ないきものを観察しよう！\nたまにウミウシがみつかるかも？\n気になるところを探してみてね！']};
+const TIPS={env:[MI.coral+'環境','ウミウシが好きな場所を水槽に設置できるよ！\n場所によってどんなウミウシが育つかな？'],deco:[MI.shell+'かざり','水槽を飾ろう！\n海に行くと何か見つかるかも？'],gear:[MI.mask+'そうび','海遊びをするための道具を揃えよう！'],sea:[MI.wave+'海へ','海で色々ないきものを観察しよう！\nたまにウミウシがみつかるかも？\n気になるところを探してみてね！']};
 function tipOnce(k){if(!S||S.tg!=null||!TIPS[k])return;S.tips=S.tips||{};if(S.tips[k])return;S.tips[k]=1;save();showModal(TIPS[k][0],`<div class="doc" style="text-align:center"><p style="font-weight:700;white-space:pre-line">${TIPS[k][1]}</p></div><button class="big" data-act="mclose" style="margin-top:12px">わかった</button>`)}
 function showG(){const st=GT[S.tg];if(!st)return;$('tutT').textContent=st.t;$('tutB').textContent=st.b;$('tutB').style.whiteSpace='pre-line';$('tutD').innerHTML='';
   $('tutN').hidden=!!st.hl;$('tutN').textContent=S.tg===GT.length-1?'はじめる':'つぎへ';$('tut').classList.add('g');
@@ -1712,11 +1714,11 @@ const A={
  adoptZone(arg){const [i,z]=arg.split(':');const t=S.tanks[+i];if(S.pt<30||t.res.length>=cap(t))return;
   S.pt-=30;const it={id:S.nextId++,kind:'baby',growth:0,foods:{},lastFed:-1e12,zone:z,x:.5,y:.86};t.res.push(it);newTarget(it);S.cur=+i;
   closeSheet();toast(`${ZONE[z]}に、こどもウミウシをお迎えした`);if(S.tg===1){S.tg=2;showG()}renderHud();save()},
- noticeSeq(ms){if(typeof ms==='string')ms=JSON.parse(decodeURIComponent(ms));const [m,...rest]=ms;showModal('✨ お知らせ',`<div class="doc" style="text-align:center"><p style="font-weight:900">${m}</p></div>`+(rest.length?`<button class="big" data-act="noticeSeq" data-arg="${encodeURIComponent(JSON.stringify(rest))}" style="margin-top:12px">つぎへ</button>`:'<button class="big" data-act="mclose" style="margin-top:12px">わかった</button>'))},
- compNext(){showModal('✨ お知らせ',`<div class="doc" style="text-align:center"><p style="font-weight:900">特別な水槽がショップに追加されました！</p></div><button class="big" data-act="mclose" style="margin-top:12px">わかった</button>`)},
+ noticeSeq(ms){if(typeof ms==='string')ms=JSON.parse(decodeURIComponent(ms));const [m,...rest]=ms;showModal(MI.spark+'お知らせ',`<div class="doc" style="text-align:center"><p style="font-weight:900">${m}</p></div>`+(rest.length?`<button class="big" data-act="noticeSeq" data-arg="${encodeURIComponent(JSON.stringify(rest))}" style="margin-top:12px">つぎへ</button>`:'<button class="big" data-act="mclose" style="margin-top:12px">わかった</button>'))},
+ compNext(){showModal(MI.spark+'お知らせ',`<div class="doc" style="text-align:center"><p style="font-weight:900">特別な水槽がショップに追加されました！</p></div><button class="big" data-act="mclose" style="margin-top:12px">わかった</button>`)},
  mclose(){$('modal').hidden=true},
  buyMagic(){if(hasTank('magic')||!allFound()||S.pt<MAGIC_PRICE)return;S.pt-=MAGIC_PRICE;const c=S.tanks[S.cur];S.tanks.push({type:'magic',lv:1,items:[],res:[]});S.tanks.sort((a,z)=>TANKS.indexOf(a.type)-TANKS.indexOf(z.type));S.cur=S.tanks.indexOf(c);
-  closeSheet();showModal('✨ 魔法の水槽',`<div class="doc"><p style="font-weight:900">魔法の水槽がとどいた！</p><p>どの水槽のウミウシでも、ここで一緒にくらせる。水槽のなかまの「移動」ボタンから引っ越しできるよ。</p><p>ショップの「環境」に、季節のかざり（クリスマス・お正月・ハロウィン）がならんだ。</p></div><button class="big" data-act="mclose" style="margin-top:12px">わかった</button>`);renderHud();save()},
+  closeSheet();showModal(MI.spark+'魔法の水槽',`<div class="doc"><p style="font-weight:900">魔法の水槽がとどいた！</p><p>どの水槽のウミウシでも、ここで一緒にくらせる。水槽のなかまの「移動」ボタンから引っ越しできるよ。</p><p>ショップの「環境」に、季節のかざり（クリスマス・お正月・ハロウィン）がならんだ。</p></div><button class="big" data-act="mclose" style="margin-top:12px">わかった</button>`);renderHud();save()},
  moveAsk(id){const tk=T(),a=tk.res.find(x=>x.id==id);if(!a)return;const sp=byId[a.sp],toMagic=tk.type!=='magic',dst=toMagic?S.tanks.find(t=>t.type==='magic'):homeTank(a.sp);
   if(!dst){toast(`${TANKNAME[sp.tank]}がまだないので、もどせない`);return}
   if(dst.res.length>=cap(dst)){toast(`${TANKNAME[dst.type]}がいっぱい（${dst.res.length}/${cap(dst)}匹）`);return}
@@ -1727,7 +1729,7 @@ const A={
  buyGear(k){const g=GEAR[k];if(!g||hasGear(k)||S.pt<g.price||(g.need&&!g.need.every(hasGear)))return;S.pt-=g.price;S.own.gear.push(k);
   toast(canSea(g.for)&&(k==='license'||g.for==='sumo')&&(g.for==='dive'||['vest','fin','mask'].every(hasGear))?`${g.name}を手に入れた。${g.for==='dive'?'ダイビング':'素潜り'}に行けるようになった！`:`${g.name}を手に入れた`);refresh()},
  buyFood(k){const p=FOODPRICE[k];if(S.pt<p||!rfOpen(k))return;S.pt-=p;S.own.foods.push(k);toast(`${FOOD[k]}を手に入れた`);refresh()},
- buyItem(arg){const [ty,k]=arg.split(':');if(!ITEMS[k]||S.own.items.includes(arg)||(ITEMS[k].need&&!S.note[ITEMS[k].need]))return;const p=ITEMS[k].price;if(S.pt<p)return;S.pt-=p;S.own.items.push(arg);toast(`${ITEMS[k].name}を手に入れた。もようがえで置ける`);if(k==='jelly'){refresh();showModal('⚠ 注意',JELLYWARN);return}refresh()},
+ buyItem(arg){const [ty,k]=arg.split(':');if(!ITEMS[k]||S.own.items.includes(arg)||(ITEMS[k].need&&!S.note[ITEMS[k].need]))return;const p=ITEMS[k].price;if(S.pt<p)return;S.pt-=p;S.own.items.push(arg);toast(`${ITEMS[k].name}を手に入れた。もようがえで置ける`);if(k==='jelly'){refresh();showModal(MI.warn+'注意',JELLYWARN);return}refresh()},
  expand(i){const t=S.tanks[+i],p=LVPRICE[t.lv];if(!p||S.pt<p)return;S.pt-=p;t.lv++;toast(`${TANKNAME[t.type]}を広げた`);refresh()},
  buyTank(ty){const b=TANKBUY[ty];if(!b||S.pt<b.price||hasTank(ty)||found(b.need)<b.n)return;S.pt-=b.price;
   const c=S.tanks[S.cur];S.tanks.push({type:ty,lv:1,items:[],res:[]});S.own.foods.push(TPRE[ty]+'sponge');S.tanks.sort((a,z)=>TANKS.indexOf(a.type)-TANKS.indexOf(z.type));S.cur=S.tanks.indexOf(c);
@@ -1756,7 +1758,7 @@ const A={
  loginOpen(fresh){const L=S.login||(S.login={n:0,last:null}),N=LOGIN.length;
   const cell=(r,i)=>{const got=i<L.n,now=fresh&&i===L.n-1,it=typeof r==='string';return `<div class="lbc${got?' got':''}${now?' now':''}${it?' it':''}"><small>${i+1}</small>${it?`<img src="${DECO_SRC[r]}" alt="${DECO[r].name}">`:`<b>${r}</b><span>pt</span>`}${got?'<i class="stamp"></i>':''}</div>`};
   let msg='';if(fresh){const r=LOGIN[L.n-1];msg=`<p class="lbmsg">${L.n}日目のログインボーナス：<b>${typeof r==='string'?DECO[r].name+'（かざり）':r+'pt'}</b></p>`}
-  showModal('🏖 ログインボーナス',`<canvas id="lbpic" width="640" height="300"></canvas>${msg}<div class="lbgrid">${LOGIN.map(cell).join('')}</div><p class="note" style="text-align:center">遊んだ日ごとに1マスずつ進む（毎日でなくてもOK）。${L.n>=N?'ぜんぶそろった！ 次の季節のカレンダーをお楽しみに':`あと${N-L.n}マス`}</p><button class="big" data-act="${fresh&&!L.tip?'lbTip':'mclose'}" style="margin-top:8px">とじる</button>`);
+  showModal(MI.beach+'ログインボーナス',`<canvas id="lbpic" width="640" height="300"></canvas>${msg}<div class="lbgrid">${LOGIN.map(cell).join('')}</div><p class="note" style="text-align:center">遊んだ日ごとに1マスずつ進む（毎日でなくてもOK）。${L.n>=N?'ぜんぶそろった！ 次の季節のカレンダーをお楽しみに':`あと${N-L.n}マス`}</p><button class="big" data-act="${fresh&&!L.tip?'lbTip':'mclose'}" style="margin-top:8px">とじる</button>`);
   drawBeach($('lbpic'))},
  lbTip(){S.login.tip=1;save();showModal('',`<div class="doc" style="text-align:center"><p style="font-weight:900;font-size:1.05rem">カレンダーはメニューから確認しよう！</p><p class="note" style="margin:4px 0 0">右上の ≡ メニューの「カレンダー（ログインボーナス）」で、いつでも見られる。</p></div><button class="big" data-act="mclose" style="margin-top:12px">わかった</button>`)},
  // 広告（仮）の前後のダイアログ：見る？ → 広告 → 結果
