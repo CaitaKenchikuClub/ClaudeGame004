@@ -41,7 +41,7 @@ npm test
 ## ファイル構成
 
 ```
-index.html          ゲーム本体「ぼくのウミウシ」（約 9.4MB。CSS・JS・画像をすべて内包）
+index.html          ゲーム本体「ぼくのウミウシ」（約 9.6MB。CSS・JS・画像をすべて内包）
 bgm.mp3             BGM（約 3.1MB。アーティファクトの公開ファイルをそのまま取り込み）
 .nojekyll           Pages で Jekyll 処理を無効化（_ で始まるファイル等を正しく配信するため）
 src/
