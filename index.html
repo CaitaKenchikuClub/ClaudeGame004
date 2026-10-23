@@ -240,6 +240,10 @@ button:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 .tut .skip{background:transparent;border:0;color:var(--ink2);font-weight:700;font-size:.8rem}
 .tut .next{background:var(--accent);color:#fff;border:0;border-radius:12px;padding:9px 18px;font-weight:900}
 .nav.tut-on{z-index:21;pointer-events:none}.nav.tut-on button{opacity:.35}.nav.tut-on button.hl{opacity:1;animation:hl 1s ease-in-out infinite}
+.tut-on.g button:not(.hl){pointer-events:none}
+.tut.g .dots{visibility:hidden}
+.shop-tut .stabs button:not(.on),.shop-tut .item .buy:not(.hl){opacity:.35;pointer-events:none}
+.buy.hl{animation:hl 1s ease-in-out infinite;box-shadow:0 0 0 3px #ffd34d}
 @keyframes hl{50%{transform:translateY(-4px)}}
 .tbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px}.tbar .tankinfo{position:static;max-width:none}.tbr{display:flex;gap:6px;align-items:center;flex-shrink:0}
 .tbar .chip{background:#2d5f86}
@@ -499,18 +503,18 @@ const SP=[
  {id:'himekuromo',name:'ヒメクロモウミウシ',r:2,food:'algae',tank:'cold',floor:'sand',
   v:{type:'sacog',body:'#2c3a2e',edge:'#8fb88a',spot:'#d8f0d0',rhino:'#24302a'},
   desc:'黒っぽい体の、小さなモウミウシの仲間（嚢舌目）。\n嚢舌目のウミウシは、海藻の細胞に歯で穴をあけて、中身を吸って食べる。\n（くわしい情報は確認中）',real:{sci:'要確認',tax:'嚢舌目（要確認）',size:'要確認',range:'要確認',diet:'海藻（要確認）'}},
- {id:'sugino',name:'スギノハウミウシ',r:2,food:'hydro',tank:'cold',floor:'weed',
-  v:{type:'aeolid',body:'#efe0c8',cer:'#b8743a',tip:'#f8eedc',rhino:'#c0844a'},
-  desc:'背中の突起が細かく枝分かれして、杉の葉のように見えるウミウシ。触角の鞘や口のまわりの突起まで、枝分かれしている。\n色は、赤茶色に白いすじのあるものから、オリーブ色、ほとんど色のないものまでさまざま。\nよく似た種が多く、近年の研究で名前の整理が進んでいる。\n図鑑の名前が変わっていたら、それはこの子のせいではない。',real:{sci:'Dendronotus sp.（frondosus グループ）',tax:'裸鰓目／枝鰓亜目／Dendronotoidea／スギノハウミウシ科',size:'2〜3.5cm',range:'北海道（積丹・羅臼）など',diet:'不明'}},
+ {id:'matsukasa',name:'マツカサウミウシ',r:2,food:'hydro',tank:'cold',floor:'weed',
+  v:{type:'aeolid',body:'#f2f2f0',cer:'#e8e4dc',tip:'#ffffff',rhino:'#e6e6e0'},
+  desc:'半透明の白い体に、小さな黒い点。背中のミノは、つぶつぶのビーズをつなげたような形。\n名前の「松かさ」は、このミノの形から。体長は1cmほど。\nヒドロ虫を食べ、そのヒドロ虫の上に卵を産みつける。ミノの中の色は、食べたヒドロ虫によって変わる。\n食べものの上で暮らし、食べものの上で子育て。むだがない。',real:{sci:'Doto japonica',tax:'裸鰓目／枝鰓亜目／スギノハウミウシ上科／ドトウミウシ科',size:'1cmほど',range:'北海道（積丹）・越前・伊豆・八丈島・天草など',diet:'ヒドロ虫'}},
  {id:'okada',name:'オカダウミウシ',r:2,col:'y',food:'sponge',tank:'cold',floor:'sand',
   v:{type:'dorid',body:'#f07a2a',edge:'#f8a060',spot:'#ffb880',spotN:6,rhino:'#d8601a',gill:'#f8a060'},
   desc:'体長5mmほどの、だいだい色の小さなウミウシ。ウミウシなのに、エラがまったくない。\n食べるのは、石灰の小さな管をつくってくらすゴカイの仲間だけ。\n卵は1回に3〜5個しか産まず、幼生の時期をとばして、親と同じ姿で生まれてくる。\n1930年に馬場菊太郎が記載したときの属名「オカダイア」が、和名に残っている。',real:{sci:'Vayssierea felis',tax:'裸鰓目／ドーリス亜目／Polyceroidea／フジタウミウシ科',size:'5〜6mm',range:'日本の各地（積丹から慶良間まで）',diet:'石灰の管をつくるゴカイ（ウズマキゴカイ類）だけ'}},
  {id:'udefuri',name:'ウデフリツノザヤウミウシ',r:3,food:'bryo',tank:'cold',floor:'sand',
   v:{type:'dorid',body:'#fbf8f2',edge:'#f0b020',spot:'#1d1d1d',spotN:10,spotR:1.6,rhino:'#f0b020',gill:'#f0b020'},
   desc:'黄色い体に、触角の鞘とエラのうしろの突起がぴょこんと立つ。その姿から、ダイバーのあいだでは「ピカチュウウミウシ」の愛称で親しまれている。\n体長は大きいもので5cm。日本の海ではよく見られるが、海外ではめずらしい。\n海外で「ピカチュウ」と呼ばれているのは、実は東ティモールで見つかった別の種のことが多い。\n本家がどちらなのか、ややこしい。',real:{sci:'Thecacera pacifica',tax:'裸鰓目／ドーリス亜目／Polyceroidea／フジタウミウシ科',size:'5cmほど',range:'日本の温帯〜亜熱帯の海（大瀬崎・串本・屋久島・沖縄など）',diet:'不明'}},
- {id:'oomino',name:'オオミノウミウシ',r:3,col:'p',food:'hydro',tank:'cold',floor:'rock',
-  v:{type:'aeolid',body:'#cdbca6',cer:'#9c8470',tip:'#efe6da',rhino:'#b8a48c'},
-  desc:'背中をミノがびっしりおおうミノウミウシ。\nイソギンチャクだけを狙う専門家で、食べたイソギンチャクの刺胞をミノの先にためて、自分の武器にする。\n北海道や青森など、冷たい海で見られる。知床では水温0.5℃の海で撮影された記録もある。\n世界では12cmになるものもいるが、日本のものは2cmほど。名前ほどオオミノではない。',real:{sci:'Aeolidia papillosa',tax:'裸鰓目／枝鰓亜目／Aeolidioidea／オオミノウミウシ科',size:'日本のものは1.5〜2.5cm（世界では12cmになることも）',range:'北海道（厚岸・室蘭・知床）・青森（浅虫）など',diet:'イソギンチャク'}},
+ {id:'zakuro',name:'ザクロスギノハウミウシ',r:3,col:'p',food:'hydro',tank:'cold',floor:'rock',
+  v:{type:'aeolid',body:'#c8323a',cer:'#d84a4a',tip:'#ffffff',rhino:'#b82a32'},
+  desc:'ザクロの実のような、あざやかな赤い体。白い点と、とぎれとぎれの白い線が入る。\n体長は3cmほど。背中の両わきに、木の枝のように分かれた突起が6〜7対ならぶ。\n2020年に新種として記載された。学名の zakuro は、日本語の「ざくろ」から。\n学名に日本語が入ると、なんだかうれしい。',real:{sci:'Dendronotus zakuro',tax:'裸鰓目／枝鰓亜目／スギノハウミウシ上科／スギノハウミウシ科',size:'3cmほどまで',range:'北海道（積丹など）・福井（越前）・カムチャツカ',diet:'ヒドロ虫（仲間の食べ物から。要確認）'}},
  {id:'tatejima',name:'タテジマウミウシ',r:3,col:'p',food:'hydro',tank:'cold',floor:'sand',
   v:{type:'dorid',body:'#3a3436',lines:'#f2efe6',edge:'#f2efe6',rhino:'#e8e2d4',gill:'#3a3436'},
   desc:'黒っぽい体に、白い縦じまがくっきり入る。体長は5cmほど。\n砂地や泥まじりの砂地にすみ、砂にもぐってくらす。食べるのはウミエラの仲間。\n神奈川県の三崎で見つかった個体をもとに記載され、学名の japonica は「日本の」。\n成長するにつれて背中のひだの数が増えるので、数えても種の見分けにはならない。数えた人の苦労がしのばれる。',real:{sci:'Armina japonica',tax:'裸鰓目／枝鰓亜目／Arminoidea／タテジマウミウシ科',size:'5cmほど',range:'青森から九州まで',diet:'ウミエラ'}},
@@ -778,13 +782,13 @@ const KEY='bokuno-umiushi-save';
 function fresh(){
   return {v:2,pt:100,gt:0,speed:1,nextId:2,cur:0,
     own:{foods:['sponge'],items:[],gear:[],deco:[]},
-    tanks:[{type:'main',lv:1,items:[],res:[{id:1,kind:'baby',growth:0,foods:{},lastFed:-1e12,zone:'none',x:.5,y:.86}]}],
+    tanks:[{type:'main',lv:1,items:[],res:[]}],
     zukan:{},note:{},cool:{iso:0,sumo:0,dive:0},pending:[],savedAt:Date.now()};
 }
 function migrate(d){ // 今後セーブ形式を変えても記録を引き継ぐための入り口
   const f=fresh();if(!d||typeof d!=='object')return null;
   // v6：あったかい水槽の入れかえ（クロミドリガイ→アンナウミウシ、ミカドウミウシ→オサムモウミウシ、キイロイボウミウシ→シラナミイロウミウシ、ジャノメアメフラシは廃止）
-  const RN={kuromidori:'anna',mikado:'osamumo',ibo:'shiranami',pirika:'clione',toge:'ayukawa',kuroheri:'himekuromo'},GONE=['janome'];
+  const RN={kuromidori:'anna',mikado:'osamumo',ibo:'shiranami',pirika:'clione',toge:'ayukawa',kuroheri:'himekuromo',oomino:'zakuro',sugino:'matsukasa'},GONE=['janome'];
   // v7：バロニアはかざりから環境アイテムへ。ピリカミノウミウシ→クリオネ、ハネガヤのえさ→ミジンウキマイマイ
   if(d.own&&d.own.deco&&d.own.deco.includes('baloni')){d.own.deco=d.own.deco.filter(k=>k!=='baloni');d.own.items=d.own.items||[];if(!d.own.items.includes('warm:baloni'))d.own.items.push('warm:baloni')}
   (d.tanks||[]).forEach(t=>{if(t.deco&&t.deco.baloni){delete t.deco.baloni;t.items=t.items||[];if(!t.items.includes('baloni'))t.items.push('baloni')}
@@ -1443,7 +1447,8 @@ function tick(){
     }
   }
   if(cur==='feedOpen'){const sig=T().res.map(b=>b.kind+(b.kind==='baby'&&hungry(b))).join();if(sig!==feedSig){feedSig=sig;const st=$('sbody').scrollTop;A.feedOpen();$('sbody').scrollTop=st}}
-  if($('sheet').hidden&&$('tut').hidden&&$('modal').hidden){if(lbDue()){const L=S.login||(S.login={id:LB_ID,n:0,last:null}),r=LOGIN[L.n];L.id=LB_ID;L.n++;L.last=today();if(typeof r==='string'){S.own.deco=S.own.deco||[];if(!S.own.deco.includes(r))S.own.deco.push(r)}else S.pt+=r;save();A.loginOpen(true)}
+  if(S.tg!=null){if($('sheet').hidden&&$('tut').hidden&&$('modal').hidden){if(revealQ.length)showReveal(revealQ.shift());else if(!S.tanks.some(t=>t.res.some(b=>b.kind==='maturing'&&b.readyAt<1e14)))showG()}}
+  else if($('sheet').hidden&&$('tut').hidden&&$('modal').hidden){if(lbDue()){const L=S.login||(S.login={id:LB_ID,n:0,last:null}),r=LOGIN[L.n];L.id=LB_ID;L.n++;L.last=today();if(typeof r==='string'){S.own.deco=S.own.deco||[];if(!S.own.deco.includes(r))S.own.deco.push(r)}else S.pt+=r;save();A.loginOpen(true)}
     else if(revealQ.length)showReveal(revealQ.shift());else if(S.pending.length)showKeep();
     else if(!S.compDone&&allFound()&&$('modal').hidden){S.compDone=1;save();showModal('🎉 図鑑コンプリート',`<div class="doc" style="text-align:center"><p style="font-size:1.15rem;font-weight:900">おめでとう！</p><p style="font-weight:700">ウミウシ図鑑を完成しました！</p><p>これからも海の生き物を優しく観察してね！</p></div><button class="big" data-act="compNext" style="margin-top:12px">つぎへ</button>`)}}
   if($('title').hidden)renderHud();
@@ -1475,7 +1480,7 @@ function renderHud(){
     if(b.kind==='baby'){const hg=hungry(b),eaten=Object.entries(b.foods).map(([k,n])=>`${FOOD[k]}×${n}`).join(' ')||'まだ何も食べていない';
       h+=`<div class="row" data-act="feedFor" data-arg="${b.id}" style="cursor:pointer"><canvas data-baby="${b.id}" width="144" height="88"></canvas><div style="min-width:0"><div class="nm">ウミウシのこども<span class="pill">こども</span></div><div class="bar"><i style="width:${Math.max(4,b.growth)}%"></i></div><div class="sub">${ZONE[b.zone]} · ${eaten}</div></div><div class="side">${hg?'<span class="tag hungry">おなかすいた</span>':`<span class="tag">あと ${fmt(HUNGER-(S.gt-b.lastFed))}</span>`}<span class="zone">成長 ${b.growth}%</span></div></div>`}
     else{const sp=byId[b.sp],p=Math.round(100*(1-Math.max(0,b.readyAt-S.gt)/(MAT[sp.r]*MIN)));
-      h+=`<div class="row"><canvas data-baby="${b.id}" width="144" height="88"></canvas><div style="min-width:0"><div class="nm">変身中…<span class="pill mat">へんしん</span></div><div class="bar mat"><i style="width:${p}%"></i></div><div class="sub">${ZONE[b.zone]} · もうすぐ正体が分かる</div></div><div class="side"><span class="tag">${fmt(b.readyAt-S.gt)}</span></div></div>`}
+      h+=`<div class="row"><canvas data-baby="${b.id}" width="144" height="88"></canvas><div style="min-width:0"><div class="nm">変身中…<span class="pill mat">へんしん</span></div><div class="bar mat"><i style="width:${p}%"></i></div><div class="sub">${ZONE[b.zone]} · もうすぐ正体が分かる</div></div><div class="side"><span class="tag">${b.readyAt>1e14?'もうすぐ':fmt(b.readyAt-S.gt)}</span></div></div>`}
   }
   for(const a of adults){const sp=byId[a.sp];
     h+=`<div class="row"><canvas data-sp="${sp.id}" width="144" height="88"></canvas><div style="min-width:0"><div class="nm">${sp.name}<span class="pill">おとな</span></div><div class="sub"><span class="stars">${stars(sp.r)}</span></div></div><div class="side">${hasTank('magic')?`<button class="mini" data-act="moveAsk" data-arg="${a.id}">${tk.type==='magic'?'もどす':'移動'}</button>`:''}<button class="mini${armed===a.id?' armed':''}" data-act="release" data-arg="${a.id}">${armed===a.id?`海へ返す +${relPt(sp)}pt`:'手放す'}</button></div></div>`}
@@ -1490,7 +1495,7 @@ function paintMinis(root){
   root.querySelectorAll('canvas[data-baby]').forEach(el=>{fitCanvas(el);const b=allRes().find(x=>x.id==el.dataset.baby);if(!b)return;const c=el.getContext('2d');c.clearRect(0,0,el.width,el.height);drawBaby(c,b,el.width/2-2*el.width/88,el.height/2+3*el.width/88,1.7*el.width/88,1,false,true)});
 }
 let cur=null,toastT;
-function openSheet(title,html){if(DECOMV){DECOMV=false;dmv=null;$('decoDone').hidden=true;save()}$('sheet').firstElementChild.classList.remove('fixed');$('stitle').textContent=title;$('sbody').innerHTML=html;$('sheet').hidden=false;$('sbody').scrollTop=0;paintMinis($('sbody'))}
+function openSheet(title,html){$('sheet').classList.remove('shop-tut');if(DECOMV){DECOMV=false;dmv=null;$('decoDone').hidden=true;save()}$('sheet').firstElementChild.classList.remove('fixed');$('stitle').textContent=title;$('sbody').innerHTML=html;$('sheet').hidden=false;$('sbody').scrollTop=0;paintMinis($('sbody'))}
 // 特別なお知らせは画面のまんなかに
 function showModal(title,html){$('mc').innerHTML=(title?`<h2>${title}</h2>`:'')+html;$('modal').hidden=false}
 function closeSheet(){$('sheet').hidden=true;cur=null}
@@ -1561,16 +1566,35 @@ function showTut(){const st=TUT[tutI];$('tutT').textContent=st.t;$('tutB').textC
   $('tutD').innerHTML=TUT.map((_,i)=>`<i class="${i===tutI?'on':''}"></i>`).join('');$('tutN').textContent=tutI===TUT.length-1?'はじめる':'つぎへ';
   $('nav').classList.add('tut-on');$('nav').querySelectorAll('button').forEach(b=>b.classList.toggle('hl',b.dataset.act===st.hl));$('tut').hidden=false}
 function endTut(){tutI=-1;$('tut').hidden=true;$('nav').classList.remove('tut-on');$('nav').querySelectorAll('button').forEach(b=>b.classList.remove('hl'));if(S){S.tut=1;save()}}
+/* はじめてのチュートリアル（S.tg＝いまの段階）：誕生日→ショップでこども→えさ（青い海綿）→アオウミウシ */
+const GT=[{t:'おたんじょうび',b:'誕生日に水槽を買ってもらった！\nお小遣いで何か買いに行こう！'},
+ {t:'ショップへ',b:'下の「ショップ」をタップして、こどもウミウシを買おう。',hl:'shopOpen'},
+ {t:'おなかすいた？',b:'おなかが空いているみたい。\nお店で少しだけもらったえさをあげてみよう！'},
+ {t:'えさをあげよう',b:'下の「えさ」をタップして、青い海綿をあげよう。',hl:'feedOpen'},
+ {t:'あれ？',b:'あれ、成長するみたい？'},
+ {t:'さあ、はじめよう！',b:'たくさんのウミウシを見つけよう！'},
+ {t:'のんびり待とう',b:'ウミウシは成長するのに時間がかかります。\n海へ行ったり、水槽の模様替えをしてのんびり待ってね！'}];
+/* チュートリアルのあと、はじめて開いたときのひとこと（S.tips） */
+const TIPS={env:['🪸 環境','ウミウシが好きな場所を水槽に設置できるよ！\n場所によってどんなウミウシが育つかな？'],deco:['🐚 かざり','水槽を飾ろう！\n海に行くと何か見つかるかも？'],gear:['🤿 そうび','海遊びをするための道具を揃えよう！'],sea:['🌊 海へ','海で色々ないきものを観察しよう！\nたまにウミウシがみつかるかも？\n気になるところを探してみてね！']};
+function tipOnce(k){if(!S||S.tg!=null||!TIPS[k])return;S.tips=S.tips||{};if(S.tips[k])return;S.tips[k]=1;save();showModal(TIPS[k][0],`<div class="doc" style="text-align:center"><p style="font-weight:700;white-space:pre-line">${TIPS[k][1]}</p></div><button class="big" data-act="mclose" style="margin-top:12px">わかった</button>`)}
+function showG(){const st=GT[S.tg];if(!st)return;$('tutT').textContent=st.t;$('tutB').textContent=st.b;$('tutB').style.whiteSpace='pre-line';$('tutD').innerHTML='';
+  $('tutN').hidden=!!st.hl;$('tutN').textContent=S.tg===GT.length-1?'はじめる':'つぎへ';$('tut').classList.add('g');
+  $('nav').classList.add('tut-on','g');$('nav').querySelectorAll('button').forEach(b=>b.classList.toggle('hl',b.dataset.act===st.hl));$('tut').hidden=false}
+function hideG(){$('tut').hidden=true;$('nav').classList.remove('tut-on','g');$('nav').querySelectorAll('button').forEach(b=>b.classList.remove('hl'))}
+function endG(){delete S.tg;S.tut=1;for(const t of S.tanks)for(const b of t.res)if(b.kind==='maturing'&&b.readyAt>1e14)b.readyAt=S.gt;$('tut').classList.remove('g');$('tutN').hidden=false;$('tutB').style.whiteSpace='';hideG();tutI=-1;save()}
 function startGame(){$('title').hidden=true;fitNav();lastReal=Date.now();requestAnimationFrame(()=>{resize();renderHud()})}
 
 const A={
  close:closeSheet,
  cont(){S=load();if(!S)return;S.gt+=Math.max(0,Date.now()-(S.savedAt||Date.now()))*S.speed;startGame()},
  newgame(_,b){if(load()&&b.id==='bNew2'&&!b.classList.contains('armed')){b.classList.add('armed');b.textContent='記録を消して はじめから';setTimeout(()=>{b.classList.remove('armed');b.textContent='はじめから'},3500);return}
-  S=fresh();save();startGame();closeSheet();tutI=0;showTut()},
- tutStart(){closeSheet();tutI=0;showTut()},
- tutNext(){if(++tutI>=TUT.length)endTut();else showTut()},
- tutEnd(){endTut()},
+  S=fresh();S.tg=0;save();startGame();closeSheet();showG()},
+ tutStart(){if(S&&S.tg!=null)return;closeSheet();tutI=0;showTut()},
+ tutNext(){if(S&&S.tg!=null){const g=S.tg;if(g===GT.length-1)return endG();
+   if(g===4){const b=T().res.find(x=>x.kind==='maturing');if(b)b.readyAt=S.gt+2200*S.speed;S.tg=5;hideG();save();return}
+   S.tg++;save();showG();return}
+  if(++tutI>=TUT.length)endTut();else showTut()},
+ tutEnd(){if(S&&S.tg!=null)return endG();endTut()},
  titleSet(){if(!S)return;S.title=S.title||{n:1};const c=titleCfg(S);
   let h=`<div class="hd"><span>タイトルに出すウミウシ</span></div><div class="stabs">${[1,2,3].map(n=>`<button class="${c.n===n?'on':''}" data-act="titleN" data-arg="${n}">${n}匹</button>`).join('')}</div><p class="note">育てたことのある子から、立ち上げるたびにランダムで選ばれる。</p>`;
   openSheet('タイトル画面の表示',h)},
@@ -1594,12 +1618,12 @@ const A={
  speed(v){S.speed=+v;save();renderHud()},
  tankTab(i){S.cur=+i;armed=null;renderHud();save()},
 
- feedOpen(){cur='feedOpen';const tk=T(),babies=tk.res.filter(b=>b.kind!=='adult'),hgs=babies.filter(b=>b.kind==='baby'&&hungry(b));
-  if(!feedFood||!foodOwned(feedFood,tk))feedFood=Object.keys(FOOD).find(k=>foodOwned(k,tk))||null;
+ feedOpen(){cur='feedOpen';const tg=S.tg===3;if(tg){hideG();feedMode='all';feedFood='spB'}const tk=T(),rank=b=>b.kind==='baby'&&hungry(b)?(feedFood&&!canEat(b,feedFood)?1:0):2,babies=tk.res.filter(b=>b.kind!=='adult').map((b,i)=>[b,i]).sort((x,y)=>rank(x[0])-rank(y[0])||x[1]-y[1]).map(x=>x[0])/* えさをあげられる子をいつも先頭に */,hgs=babies.filter(b=>b.kind==='baby'&&hungry(b));
+  if(!tg&&(!feedFood||!foodOwned(feedFood,tk)))feedFood=Object.keys(FOOD).find(k=>foodOwned(k,tk))||null;
   if(feedMode==='one'&&!hgs.some(b=>b.id===feedSel))feedSel=hgs[0]?.id??null;
   let h='';
   if(S.tanks.length>1)h+=`<div class="tabs" style="margin-top:-6px">${S.tanks.map((t,i)=>t.type==='magic'?'':`<button class="${i===S.cur?'on':''}" data-act="feedTank" data-arg="${i}">${TICON[t.type]}${TEMP[t.type]}</button>`).join('')}</div>`;
-  h+=`<div class="stabs"><button class="${feedMode==='all'?'on':''}" data-act="feedMode" data-arg="all">水槽ごと</button><button class="${feedMode==='one'?'on':''}" data-act="feedMode" data-arg="one">1匹ずつ</button></div>`;
+  if(!tg)h+=`<div class="stabs"><button class="${feedMode==='all'?'on':''}" data-act="feedMode" data-arg="all">水槽ごと</button><button class="${feedMode==='one'?'on':''}" data-act="feedMode" data-arg="one">1匹ずつ</button></div>`;
   if(!babies.length){openSheet('えさやり',h+'<div class="fsum">この水槽には今、こどもウミウシがいない。</div>');return}
   const eatHtml=b=>b.kind==='maturing'?'<em>もうすぐ正体が分かる</em>':(Object.entries(b.foods).map(([k,n])=>`<i>${FOODICON[k]}×${n}</i>`).join('')||'<em>まだ何も食べていない</em>');
   // 1匹ずつのとき：今のまま育つと何になりそうか（見つけた子は名前、まだの子は？？？）
@@ -1611,7 +1635,7 @@ const A={
   if(feedMode==='all')h+=`<div class="fsum"><span class="kids">${hgs.slice(0,3).map(b=>`<canvas data-baby="${b.id}" width="108" height="72"></canvas>`).join('')}</span><span>${hgs.length?`おなかをすかせた子ども<b>${hgs.length}</b>匹`:'みんなおなかいっぱい。次のごはんまで待とう'}</span></div>`;
   if(feedMode==='all')h+=`<div class="kidpick">${babies.map(b=>kidCard(b,false)).join('')}</div>`;
   else h+=`<div class="kidpick">${babies.map(b=>kidCard(b,true)).join('')}</div>`;
-  h+=`<div class="foods">${Object.keys(FOOD).filter(k=>foodUsable(k,tk)&&(rfOpen(k)||foodOwned(k,tk))).map(k=>{const own=foodOwned(k,tk),on=own&&feedFood===k;return `<button class="food${on?' on':''}" data-act="feedFood" data-arg="${k}" ${own?'':'disabled'}>${FOODICON[k]}${fshort(k)}${own?'':`<small>${k==='jelly'?'水槽にクラゲを置く':'ショップで買える'}</small>`}${on?CHECK:own?'':LOCK}</button>`}).join('')}</div>`;
+  h+=`<div class="foods">${tg?`<button class="food on">${FOODICON.spB}${fshort('spB')}<small>お店でもらった</small>${CHECK}</button>`:''}${Object.keys(FOOD).filter(k=>!tg&&foodUsable(k,tk)&&(rfOpen(k)||foodOwned(k,tk))).map(k=>{const own=foodOwned(k,tk),on=own&&feedFood===k;return `<button class="food${on?' on':''}" data-act="feedFood" data-arg="${k}" ${own?'':'disabled'}>${FOODICON[k]}${fshort(k)}${own?'':`<small>${k==='jelly'?'水槽にクラゲを置く':'ショップで買える'}</small>`}${on?CHECK:own?'':LOCK}</button>`}).join('')}</div>`;
   h+=ZFOOD[feedFood]?`<div class="rule">${FOOD[feedFood]}は、${ZONE[ZFOOD[feedFood]]}で育てている子だけが食べる。</div>`:'<div class="rule">食べたえさで、育ち方が変わる。</div>';
   const can=b=>canEat(b,feedFood),sel=hgs.find(b=>b.id===feedSel);
   const n=feedMode==='all'?hgs.filter(can).length:(sel&&can(sel)?1:0),nj=ZFOOD[feedFood]&&!n&&(feedMode==='all'?hgs.length:sel);
@@ -1623,7 +1647,8 @@ const A={
  feedPick(id){feedSel=+id;refresh()},
  feedFor(id){feedMode='one';feedSel=+id;A.feedOpen()},
  feedFood(k){feedFood=k;refresh()},
- feedGo(){const tk=T(),k=feedFood;if(!k||!foodOwned(k,tk))return;
+ feedGo(){const tk=T(),k=feedFood;if(S.tg===3){const b=tk.res.find(x=>x.kind==='baby');if(!b)return;b.growth=99;giveFood(b,'spB',tk);if(b.kind==='maturing'){b.sp='ao';b.readyAt=1e15}feedLog='';closeSheet();S.tg=4;save();showG();return}
+  if(!k||!foodOwned(k,tk))return;
   const all=tk.res.filter(b=>b.kind==='baby'&&hungry(b)&&(feedMode==='all'||b.id===feedSel)),targets=all.filter(b=>canEat(b,k));if(!targets.length)return;
   targets.forEach(b=>{giveFood(b,k,tk);labels[b.id]=performance.now()+1500});
   const grown=targets.filter(b=>b.kind==='maturing').length;
@@ -1644,7 +1669,7 @@ const A={
   else{h+=dks.map(k=>{const on=!!tdc[k];return `<div class="item"><div><b>${DECO[k].name}</b><p>${DECO[k].desc}</p></div><button class="buy${on?' ghost':''}" data-act="${on?'decoOff':'decoOn'}" data-arg="${k}">${on?'しまう':'置く'}</button></div>`}).join('');
     if(Object.keys(tdc).length)h+=`<button class="buy" style="width:100%;margin-top:10px;padding:12px" data-act="decoMove">かざりを動かす</button>`}
   h+='<p class="note">かざりは種類ごとに1つ置ける。育てる場所にはならないので、環境アイテムの置ける数とは別。</p>'}
-  openSheet('もようがえ',h)},
+  openSheet('もようがえ',h);tipOnce(decTab)},
  setWater(k){const tk=T();if(tk.type!=='magic'||!MWNAME[k])return;tk.water=k;refresh()},
  decTab(v){decTab=v;A.decorOpen()},
  decoOn(k){const tk=T(),d=DECO[k];if(!d||!decoOwned(k)||!d.tanks.includes(tk.type))return;tk.deco=tk.deco||{};tk.deco[k]={x:d.x,y:d.y};refresh()},
@@ -1656,9 +1681,9 @@ const A={
  unplace(k){const tk=T();if(tk.res.some(b=>b.kind!=='adult'&&b.zone===k)){toast(`${ZONE[k]}で育てている子がいるので、しまえない`);return}
   tk.items=tk.items.filter(x=>x!==k);refresh()},
 
- shopTab(v){shopTab=v;refresh()},
+ shopTab(v){if(S.tg===1)return;shopTab=v;refresh()},
  shopFold(k){SFOLD.has(k)?SFOLD.delete(k):SFOLD.add(k);try{localStorage.setItem('umi-sfold',JSON.stringify([...SFOLD]))}catch(e){}const y=$('sbody').scrollTop;A.shopOpen();$('sbody').scrollTop=y},
- shopOpen(){cur='shopOpen';const tk=T();
+ shopOpen(){cur='shopOpen';const tk=T(),tg=S.tg===1;if(tg){hideG();shopTab='umi'}
   const row=(nm,p,price,act,arg,state)=>`<div class="item"><div><b>${nm}</b><p>${p}</p></div><button class="buy" data-act="${act}" data-arg="${arg}" ${state||S.pt<price?'disabled':''}>${state||price+' pt'}</button></div>`;
   const room=S.tanks.some(t=>t.type!=='magic'&&t.res.length<cap(t));
   const nf=SP.filter(s=>S.zukan[s.id]?.n).length;
@@ -1676,8 +1701,8 @@ const A={
   ${tankRows}${magicRow}</div>`};
   const TABS=[['umi','ウミウシ'],['food','えさ'],['env','環境'],['deco','かざり'],['tank','水槽'],['gear','そうび']];
   let h=`<div class="stabs">${TABS.map(([k,n])=>`<button class="${shopTab===k?'on':''}" data-act="shopTab" data-arg="${k}">${n}</button>`).join('')}</div>`+SEC[shopTab];
-  openSheet('ウミウシショップ',h);$('sheet').firstElementChild.classList.add('fixed')},
- adopt(){cur=null;if(S.pt<30)return;const opts=S.tanks.map((t,i)=>({t,i})).filter(o=>o.t.type!=='magic'&&o.t.res.length<cap(o.t));
+  openSheet('ウミウシショップ',h);$('sheet').firstElementChild.classList.add('fixed');$('sheet').classList.toggle('shop-tut',tg);if(tg)$('sbody').querySelector('[data-act=adopt]')?.classList.add('hl');tipOnce(shopTab)},
+ adopt(){cur=null;if(S.pt<30)return;if(S.tg===1)return A.adoptZone(S.cur+':none');const opts=S.tanks.map((t,i)=>({t,i})).filter(o=>o.t.type!=='magic'&&o.t.res.length<cap(o.t));
   if(!opts.length)return;if(opts.length===1)return A.adoptTank(opts[0].i);
   openSheet('どの水槽で育てる？','<div class="pick">'+S.tanks.map((t,i)=>t.type==='magic'?'':`<button data-act="adoptTank" data-arg="${i}" ${t.res.length<cap(t)?'':'disabled'}><b>${TANKNAME[t.type]}</b><span>${t.res.length}/${cap(t)}匹 · 水温 ${TEMP[tempOf(t)]}</span></button>`).join('')+'</div>')},
  adoptTank(i){const t=S.tanks[+i];const zones=['none',...t.items.filter(k=>ITEMS[k].zone)];
@@ -1686,7 +1711,7 @@ const A={
    (zones.length===1?'</div><p class="note">環境アイテムを置くと、ここに選べる場所が増える。</p>':'</div>'))},
  adoptZone(arg){const [i,z]=arg.split(':');const t=S.tanks[+i];if(S.pt<30||t.res.length>=cap(t))return;
   S.pt-=30;const it={id:S.nextId++,kind:'baby',growth:0,foods:{},lastFed:-1e12,zone:z,x:.5,y:.86};t.res.push(it);newTarget(it);S.cur=+i;
-  closeSheet();toast(`${ZONE[z]}に、こどもウミウシをお迎えした`);renderHud();save()},
+  closeSheet();toast(`${ZONE[z]}に、こどもウミウシをお迎えした`);if(S.tg===1){S.tg=2;showG()}renderHud();save()},
  noticeSeq(ms){if(typeof ms==='string')ms=JSON.parse(decodeURIComponent(ms));const [m,...rest]=ms;showModal('✨ お知らせ',`<div class="doc" style="text-align:center"><p style="font-weight:900">${m}</p></div>`+(rest.length?`<button class="big" data-act="noticeSeq" data-arg="${encodeURIComponent(JSON.stringify(rest))}" style="margin-top:12px">つぎへ</button>`:'<button class="big" data-act="mclose" style="margin-top:12px">わかった</button>'))},
  compNext(){showModal('✨ お知らせ',`<div class="doc" style="text-align:center"><p style="font-weight:900">特別な水槽がショップに追加されました！</p></div><button class="big" data-act="mclose" style="margin-top:12px">わかった</button>`)},
  mclose(){$('modal').hidden=true},
@@ -1727,7 +1752,7 @@ const A={
   // 行けないときは、ボタンの下に「お魚マーク＋広告の吹き出し」。広告（仮）を見ると待ち時間をとばせる（ダイビングは今日の回数が1回ふえる）
   const ad=k=>{if(!canSea(k)||c(k))return '';const n=adLeft(k);return n>0?`<button class="adbtn" data-act="adWatch" data-arg="${k}" aria-label="広告を見て${k==='dive'?'もう1回行く':'すぐ行く'}">${FISH_SVG}<span class="adbub"><i>CM</i>${n===Infinity?'すぐ行く':'あと'+n+'回'}</span></button>`:`<div class="adbtn off">${FISH_SVG}<span class="adbub">今日はおしまい</span></div>`};
   const card=(k,nm,p)=>`<div class="card"><div><b>${nm}</b><p>${p}${need(k)}</p></div><div class="gocol"><button class="buy" data-act="go" data-arg="${k}" ${c(k)?'':'disabled'}>${!canSea(k)?'そうびが必要':k==='dive'?(c(k)?`行く（今日あと${diveLeft()}回）`:'また明日'):c(k)?'行く':'あと '+fmt(S.cool[k]-S.gt)}</button>${ad(k)}</div></div>`;
-  openSheet('海へ行く',card('iso','磯あそび','磯の景色の中から、気になる場所を4か所しらべる。磯の生き物や、こどもウミウシが見つかる。')+card('sumo','素潜り','少し深い海で4か所しらべる。魚やタコ、めずらしい子に会えるかも。')+card('dive','ダイビング','少し遠くの海で5か所しらべる。ダイビングでしか会えない生き物がいる。まれにウミウシのヒントが見つかる。')+'<p class="note">大人のウミウシに出会えるのはまれ。生き物は、はじめて見つけるといきもの図鑑に記録されてボーナスポイント。一度行くと、しばらく休憩が必要。ダイビングは1日2回まで。</p>')},
+  openSheet('海へ行く',card('iso','磯あそび','磯の景色の中から、気になる場所を4か所しらべる。磯の生き物や、こどもウミウシが見つかる。')+card('sumo','素潜り','少し深い海で4か所しらべる。魚やタコ、めずらしい子に会えるかも。')+card('dive','ダイビング','少し遠くの海で5か所しらべる。ダイビングでしか会えない生き物がいる。まれにウミウシのヒントが見つかる。')+'<p class="note">大人のウミウシに出会えるのはまれ。生き物は、はじめて見つけるといきもの図鑑に記録されてボーナスポイント。一度行くと、しばらく休憩が必要。ダイビングは1日2回まで。</p>');tipOnce('sea')},
  loginOpen(fresh){const L=S.login||(S.login={n:0,last:null}),N=LOGIN.length;
   const cell=(r,i)=>{const got=i<L.n,now=fresh&&i===L.n-1,it=typeof r==='string';return `<div class="lbc${got?' got':''}${now?' now':''}${it?' it':''}"><small>${i+1}</small>${it?`<img src="${DECO_SRC[r]}" alt="${DECO[r].name}">`:`<b>${r}</b><span>pt</span>`}${got?'<i class="stamp"></i>':''}</div>`};
   let msg='';if(fresh){const r=LOGIN[L.n-1];msg=`<p class="lbmsg">${L.n}日目のログインボーナス：<b>${typeof r==='string'?DECO[r].name+'（かざり）':r+'pt'}</b></p>`}
